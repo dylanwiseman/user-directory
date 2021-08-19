@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
 
-function App() {
+import Header from "./Header";
+import Main from "./Main";
+import Navigation from "./Navigation";
+import data from "./data";
+
+export default function App() {
+  const [userId, setUserId] = useState(0);
+
+  function goNext() {
+    if (userId < data.length - 1) {
+      setUserId(userId + 1);
+    }
+  }
+  function goPrevious() {
+    if (userId >= 1) setUserId(userId - 1);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Main i={userId} />
+      <Navigation goNext={goNext} goPrevious={goPrevious} />
     </div>
   );
 }
-
-export default App;
