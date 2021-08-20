@@ -27,7 +27,7 @@ button {
 .prev {
   background-color: transparent;
   border: none;
-  padding-right: 5em;
+  padding-right: 2em;
 }
 
 .next {
@@ -38,4 +38,10 @@ button {
 
 .buttonsDiv {
   text-align: center;
+}
+
+label {
+  color: white;
+}
+form {
 }

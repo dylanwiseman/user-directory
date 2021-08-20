@@ -1,19 +1,19 @@
 import React from "react";
-import data from "./data";
 import "./App.css";
 
 export default function Main(props) {
   let i = props.i;
+  let userData = props.userData;
   let person = {
-    index: data[i].id,
-    fName: data[i].name.first,
-    lName: data[i].name.last,
-    city: data[i].city,
-    country: data[i].country,
-    jobTitle: data[i].title,
-    employer: data[i].employer,
-    movies: [...data[i].favoriteMovies],
-    numberLength: data.length,
+    index: userData[i].id,
+    fName: userData[i].name.first,
+    lName: userData[i].name.last,
+    city: userData[i].city,
+    country: userData[i].country,
+    jobTitle: userData[i].title,
+    employer: userData[i].employer,
+    movies: [...userData[i].favoriteMovies],
+    numberLength: userData.length,
   };
 
   let {
@@ -55,7 +55,7 @@ export default function Main(props) {
         <ol>{moviesArray}</ol>
       </div>
       <div>
-        <h2 className="counter">{`${i + 1}/${numberLength}`}</h2>
+        <h2 className="counter">{`${index}/${numberLength}`}</h2>
       </div>
     </div>
   );
