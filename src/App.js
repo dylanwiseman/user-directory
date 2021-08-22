@@ -67,6 +67,13 @@ export default function App() {
       favoriteMovies: newMovies,
     });
     setData(copyData);
+    setNewName("");
+    setNewLastName("");
+    setNewCountry("");
+    setNewCity("");
+    setNewEmployer("");
+    setNewJobTitle("");
+    setNewMovies([]);
   }
 
   function handleNew() {
