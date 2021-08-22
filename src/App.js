@@ -22,6 +22,19 @@ export default function App() {
   const [userData, setData] = useState(data);
   const [toggle, setToggle] = useState(false);
   const [toggleEdit, setToggleEdit] = useState(false);
+  const [currentFName, setCurrentFName] = useState(userData[userId].name.first);
+  const [currentLName, setCurrentLName] = useState(userData[userId].name.last);
+  const [currentCity, setCurrentCity] = useState(userData[userId].city);
+  const [currentCountry, setCurrentCountry] = useState(
+    userData[userId].country
+  );
+  const [currentTitle, setCurrentTitle] = useState(userData[userId].title);
+  const [currentEmployer, setCurrentEmployer] = useState(
+    userData[userId].employer
+  );
+  const [currentMovies, setCurrentMovies] = useState(
+    userData[userId].favoriteMovies
+  );
 
   function goNext() {
     if (userId < userData.length - 1) {
@@ -38,23 +51,44 @@ export default function App() {
   function handleFirstNameChange(val) {
     setNewName(val);
   }
+  function handleEditName(val) {
+    setCurrentFName(val);
+  }
   function handleLastNameChange(val) {
     setNewLastName(val);
+  }
+  function handleEditLName(val) {
+    setCurrentLName(val);
   }
   function handleCityChange(val) {
     setNewCity(val);
   }
+  function handleEditCity(val) {
+    setCurrentCity(val);
+  }
   function handleCountryChange(val) {
     setNewCountry(val);
+  }
+  function handleEditCountry(val) {
+    setCurrentCountry(val);
   }
   function handleTitleChange(val) {
     setNewJobTitle(val);
   }
+  function handleEditTitle(val) {
+    setCurrentTitle(val);
+  }
   function handleEmployerChange(val) {
     setNewEmployer(val);
   }
+  function handleEditEmployer(val) {
+    setCurrentEmployer(val);
+  }
   function handleMoviesChange(val) {
     setNewMovies(val.split(","));
+  }
+  function handleEditMovies(val) {
+    setCurrentMovies(val.split(","));
   }
   function handleClick() {
     let copyData = [...userData];
@@ -77,6 +111,17 @@ export default function App() {
     setNewMovies([]);
   }
 
+  function handleEditClick() {
+    let copyData = [...userData];
+    copyData[userId].name.first = currentFName;
+    copyData[userId].name.last = currentLName;
+    copyData[userId].city = currentCity;
+    copyData[userId].country = currentCountry;
+    copyData[userId].title = currentTitle;
+    copyData[userId].favoriteMovies = currentMovies;
+    setData(copyData);
+  }
+
   function handleNew() {
     setToggle(!toggle);
   }
@@ -94,6 +139,7 @@ export default function App() {
         goPrevious={goPrevious}
         deleteFn={deleteFn}
         handleNew={handleNew}
+        handleEdit={handleEdit}
       />
       {toggle && (
         <form>
@@ -151,6 +197,67 @@ export default function App() {
               e.preventDefault();
               console.log(data[0].id);
               handleClick();
+            }}
+          >
+            Submit
+          </button>
+        </form>
+      )}
+      {toggleEdit && (
+        <form>
+          <label htmlFor="editName">First Name:</label>
+          <input
+            type="text"
+            id="editName"
+            value={currentFName}
+            onChange={(e) => handleEditName(e.target.value)}
+          />
+          <label htmlFor="lastName">Last Name:</label>
+          <input
+            type="text"
+            id="lastName"
+            value={currentLName}
+            onChange={(e) => handleEditLName(e.target.value)}
+          />
+          <label htmlFor="city">City:</label>
+          <input
+            type="text"
+            id="city"
+            value={currentCity}
+            onChange={(e) => handleEditCity(e.target.value)}
+          />
+          <label htmlFor="country">Country:</label>
+          <input
+            type="text"
+            id="country"
+            value={currentCountry}
+            onChange={(e) => handleEditCountry(e.target.value)}
+          />
+          <label htmlFor="employer">Employer:</label>
+          <input
+            type="text"
+            id="employer"
+            value={currentEmployer}
+            onChange={(e) => handleEditEmployer(e.target.value)}
+          />
+          <label htmlFor="title">Job Title:</label>
+          <input
+            type="text"
+            id="title"
+            value={currentTitle}
+            onChange={(e) => handleEditTitle(e.target.value)}
+          />
+          <label htmlFor="movies">Favorite Movies:</label>
+          <input
+            type="text"
+            id="movies"
+            value={currentMovies}
+            onChange={(e) => handleEditMovies(e.target.value)}
+          />
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              handleEditClick();
             }}
           >
             Submit
