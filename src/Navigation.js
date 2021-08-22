@@ -16,7 +16,9 @@ export default function Navigation(props) {
         Delete
       </button>
       <button className="actions">Edit</button>
-      <button className="actions">New</button>
+      <button className="actions" onClick={() => props.handleNew()}>
+        New
+      </button>
       <button
         className="next"
         onClick={() => {

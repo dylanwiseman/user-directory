@@ -20,6 +20,7 @@ export default function App() {
   const [newEmployer, setNewEmployer] = useState("");
   const [newMovies, setNewMovies] = useState([]);
   const [userData, setData] = useState(data);
+  const [toggle, setToggle] = useState(false);
 
   function goNext() {
     if (userId < userData.length - 1) {
@@ -68,71 +69,82 @@ export default function App() {
     setData(copyData);
   }
 
+  function handleNew() {
+    setToggle(!toggle);
+  }
+
   return (
     <div className="App" style={appstyle}>
       <Header />
       <Main i={userId} userData={userData} />
-      <Navigation goNext={goNext} goPrevious={goPrevious} deleteFn={deleteFn} />
-      <form>
-        <label htmlFor="firstName">First Name:</label>
-        <input
-          type="text"
-          id="firstName"
-          value={newName}
-          onChange={(e) => handleFirstNameChange(e.target.value)}
-        />
-        <label htmlFor="lastName">Last Name:</label>
-        <input
-          type="text"
-          id="lastName"
-          value={newLastName}
-          onChange={(e) => handleLastNameChange(e.target.value)}
-        />
-        <label htmlFor="city">City:</label>
-        <input
-          type="text"
-          id="city"
-          value={newCity}
-          onChange={(e) => handleCityChange(e.target.value)}
-        />
-        <label htmlFor="country">Country:</label>
-        <input
-          type="text"
-          id="country"
-          value={newCountry}
-          onChange={(e) => handleCountryChange(e.target.value)}
-        />
-        <label htmlFor="employer">Employer:</label>
-        <input
-          type="text"
-          id="employer"
-          value={newEmployer}
-          onChange={(e) => handleEmployerChange(e.target.value)}
-        />
-        <label htmlFor="title">Job Title:</label>
-        <input
-          type="text"
-          id="title"
-          value={newJobTitle}
-          onChange={(e) => handleTitleChange(e.target.value)}
-        />
-        <label htmlFor="movies">Favorite Movies:</label>
-        <input
-          type="text"
-          id="movies"
-          value={newMovies}
-          onChange={(e) => handleMoviesChange(e.target.value)}
-        />
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            console.log(data[0].id);
-            handleClick();
-          }}
-        >
-          Submit
-        </button>
-      </form>
+      <Navigation
+        goNext={goNext}
+        goPrevious={goPrevious}
+        deleteFn={deleteFn}
+        handleNew={handleNew}
+      />
+      {toggle && (
+        <form>
+          <label htmlFor="firstName">First Name:</label>
+          <input
+            type="text"
+            id="firstName"
+            value={newName}
+            onChange={(e) => handleFirstNameChange(e.target.value)}
+          />
+          <label htmlFor="lastName">Last Name:</label>
+          <input
+            type="text"
+            id="lastName"
+            value={newLastName}
+            onChange={(e) => handleLastNameChange(e.target.value)}
+          />
+          <label htmlFor="city">City:</label>
+          <input
+            type="text"
+            id="city"
+            value={newCity}
+            onChange={(e) => handleCityChange(e.target.value)}
+          />
+          <label htmlFor="country">Country:</label>
+          <input
+            type="text"
+            id="country"
+            value={newCountry}
+            onChange={(e) => handleCountryChange(e.target.value)}
+          />
+          <label htmlFor="employer">Employer:</label>
+          <input
+            type="text"
+            id="employer"
+            value={newEmployer}
+            onChange={(e) => handleEmployerChange(e.target.value)}
+          />
+          <label htmlFor="title">Job Title:</label>
+          <input
+            type="text"
+            id="title"
+            value={newJobTitle}
+            onChange={(e) => handleTitleChange(e.target.value)}
+          />
+          <label htmlFor="movies">Favorite Movies:</label>
+          <input
+            type="text"
+            id="movies"
+            value={newMovies}
+            onChange={(e) => handleMoviesChange(e.target.value)}
+          />
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              console.log(data[0].id);
+              handleClick();
+            }}
+          >
+            Submit
+          </button>
+        </form>
+      )}
     </div>
   );
 }
