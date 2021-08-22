@@ -21,6 +21,7 @@ export default function App() {
   const [newMovies, setNewMovies] = useState([]);
   const [userData, setData] = useState(data);
   const [toggle, setToggle] = useState(false);
+  const [toggleEdit, setToggleEdit] = useState(false);
 
   function goNext() {
     if (userId < userData.length - 1) {
@@ -78,6 +79,10 @@ export default function App() {
 
   function handleNew() {
     setToggle(!toggle);
+  }
+
+  function handleEdit() {
+    setToggleEdit(!toggleEdit);
   }
 
   return (
